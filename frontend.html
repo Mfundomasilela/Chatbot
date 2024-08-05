@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device=width", initial-scaled="1.0">
+        <title> QA Simulation App</title>
+        <script>
+            async function getQAs() {
+                const respone = await fetch('/get_qas');
+                const data =  await fetch response.json();
+                const qaList = document.getElementById('qa-list');
+                qaList.innerHTML = '';
+                data.forEach(qa => {
+                    const li = document.createElement('li');
+                    li.textContent = 'Q: ${qa.question} - A: ${qa.answer}';
+                    qaList.appendChild(li);
+                });
+            }
+            window.onload = getQAs
+        </script>
+    </head>
+    <body>
+        <h1>Question-Answer Simulation App</h1>
+        <ul id="qa-list"></ul>
+    </body>
+</html>
